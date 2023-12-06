@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A New Direction</title>
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+    <!-- This is the start menu -->
+<div id="menu">
+    <div id="menu-box">
+        <div class="name-box">
+            <label for="playerName">Name:</label>
+            <input type="text" id="playerName" placeholder="Enter a name">
+        </div>
+        <div class="gender-selection">
+            <span class="gender-label">Gender:</span>
+            <input type="radio" id="male" name="gender" value="male" checked>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+        </div>
+        <button id="startGame">Start Game</button>
+    </div>
+</div>
+    <!-- End of start menu -->
+
+    <!-- This is the second screen -->
+    <div id="game-container" style="display: none;">
+        <div class="header">
+            <div class="profile-icon">
+             <img id="profileAvatar" src="https://cdn.glitch.global/12634f73-487e-48d6-84dc-63b6721aef3d/avatar-placeHolder.png?v=1701670059811" alt="Profile Avatar">
+              </div>
+            <div class="player-info">
+                <div class="name" id="playerNameDisplay">Player Name</div>
+                <div class="age" id="playerAgeDisplay">Player Age</div>
+                <div class="occupation" id="playerOccupationDisplay">Occupation</div>
+            </div>
+        </div>
+<!-- Random Event Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <p id="event-message"></p>
+    <select id="event-options">
+      <option value="a">Option A</option>
+      <option value="b">Option B</option>
+    </select>
+    <button id="event-confirm">Confirm</button>
+  </div>
+</div>
+        <div class="life-events-container" id="output-container"><div id="loader-spinner" class="loader" style="display: none;"></div>
+            <!-- Life events will be dynamically inserted here -->
+        </div>
+        <div class="age-button-container">
+            <button class="age-button" id="ageUp">+</button>
+        </div>
+    </div>
+  
+  <!---death--->
+  <div id="death-popup" class="popup">
+    <h2>Obituary</h2>
+    <p>You passed away at the age of <span id="death-age"></span>.</p>
+    <p id="gpt-death-message"></p> <!-- Element to display the GPT death message -->
+    <button id="restart">
+       Begin Again
+    </button>
+</div>
+    <!---death--->
+    <script src="script.js"></script>
+</body>
+</html>
