@@ -1,0 +1,324 @@
+
+  youngChild:[
+    {message: "A stranger offers you candy. Do you take it?",
+     a: {
+       display:"Yes",
+       GPT: "ate candy from a stranger that was poisoned and made them very ill"
+    }, b: {
+        display:"No",
+        GPT: "refused candy from a stranger who was later seen on the news as a wanted serial killer"
+    }},
+    {message: "Your nanny Kayleigh left the front door open. Do you go outside?",
+     a: {
+       display:"Yes! I love adventures.",
+       GPT: "wandered outside unsuupervised because their babysitter left the door open and tried to build a sand castle out of an ant hill (it was very painful)"
+    }, b: {
+        display:"No! Mommy says that is dangerous.",
+        GPT: "stayed inside when the door was left open and avoided harm"
+    }},
+    {message: "A girl comes up to you at the playground and asks to play a game. Do you want to play?",
+     a: {
+       display:"Yes",
+       GPT: "played a riveting game of jacks at the playground with a random girl and made a new best friend (for the day); you got to keep the marble"
+    }, b: {
+        display:"No",
+        GPT: "refused to play jacks with an unknown girl at the playground and made her cry by not being her friend"
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }}
+  ],
+  child:[
+    {message: "Your mom says you can have a pet! You go to the pet store and cannot decide between a fluffy puppy or cute cockroach. Which will you choose?",
+     a: {
+       display:"The puppy! It's so soft!",
+       GPT: "adopted a cute puppy that threw up on everything then died"
+    }, b: {
+        display:"The cockroach is too cute to leave behind.",
+        GPT: "adopted a pet cockroach named Percy who is loyal and follows them everywhere",
+        action:()=>{
+          player.assets.push("beloved pet cockroach named Percy")
+        }
+    }},
+    {message: "You feel ill and like you shouldn't go to school. Do you tell your parents?",
+     a: {
+       display:"Yes",
+       GPT: "told their mom they didn't feel well and that they shouldn't go to school but their mom didn't believe them; they embarassed themselves by throwing up on the teacher"
+    }, b: {
+        display:"No",
+        GPT: "declined to tell their mom they were too sich to go to school; they threw up all over the teacher and were very embarassed."
+    }},
+    {message: "Samantha started a rumor that you still shower with your mom. What do you do?",
+     a: {
+       display:"Start a rumor she has a crush on the weird kid",
+       GPT: "successfully started a rumor that Samantha was into the weird kid in the class after Samantha started a rumor that they still shower with their mom."
+    }, b: {
+        display:"Embrace it. Why hide the truth?",
+        GPT: "got mocked mercilously for still showering with their mother after owning up to the rumor Samantha started"
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }}
+  ],
+  teen:[
+    {message: "Your friend offers you a cigarett. Want to try it?",
+     a: {
+       display:"Sure, it smells good.",
+       GPT: "tried a cigarett that resulted in a severe nicotine addction and their mom threatened to send them to rehab"
+    }, b: {
+        display:"No, smoking is nasty.",
+        GPT: "declined the offer to try a cigarett and avoided becoming an addict"
+    }},
+    {message: "A bully challenges you to a fight after school. Do you do it?",
+     a: {
+       display:"Yes! I have the power of God and Anime on my side.",
+       GPT: "got into a fight with a bully at school and ended up dangling from the flag pole by their underwear after trying to embarassingly fight like an anime character; Their nickname the rest of the year was capitan underpants."
+    }, b: {
+        display:"No, only someone as stupid as him would think that's a good idea.",
+        GPT: "declined to fight a bully at school and was mocked for being weak"
+    }},
+    {message: "Your mom thinks you're just going through a phase and will not let you get a face tattoo. What do you do?",
+     a: {
+       display:"This is the real me! I am running away to be who I really am.",
+       GPT: "ran away from home because their mom wouldn't let them get a face tattoo claiming it is 'just a phase' and they feel like this is the real them; they came back home an hour later because they wanted the dinosaur nuggets their mom was making for dinner"
+    }, b: {
+        display:"Too bad. My buddy can do it in his basement without her signing off.",
+        GPT: "tried to get a stick-and-poke tattoo on their friend's basement because their mom wouldn't let them get a one claiming it is 'just a phase' and they feel like this is the real them; the needle barely grazed their face and they passed out from fear then went home without a tattoo"
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }}
+  ],
+  youngAdult:[
+    {message: "You feel like all of your friends are getting married and having babies. How do you cope?",
+     a: {
+       display:"Obsess over all their Facebook posts about it",
+       GPT: "fell into a deep depression about not being married and having kids like all of their friends; it is really messing with their wellbeing"
+    }, b: {
+        display:"Ignore it. Who cares?",
+        GPT: "chose to not obsess over other people's lives and focus on improving themself"
+    }},
+    {message: "Someone offered you $50 for feet pics. Will you do it?",
+     a: {
+       display:"Yes. Easiest $50 of my life.",
+       GPT: "sold feet pics to a stranger for $50 and was told they had 'really nice feet'",
+       action: () =>{ 
+         player.assets.push("$50")
+         player.assets.push("some 'really nice feet'")
+       }
+    }, b: {
+        display:"No. That's weird.",
+        GPT: "missed out on an easy $50 by not selling their feet pics"
+    }},
+    {message: "You start feeling like calling yourself a " + player.gender +" doesn't describe you. Want to transition?",
+     a: {
+       display:"Yes. I have never felt right in this body.",
+       GPT: "transitioned from being a " + player.gender + " and feels like they are living their authentic life",
+       action: () => {
+         if (player.gender == "male") {
+           player.gender = "female";
+         } else {
+           player.gender = "male";
+         }
+       } 
+    }, b: {
+        display:"No. This is just a passing thought",
+        GPT: "briefly thought about transitioning but decided against it"
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }}
+  ],
+  adult:[
+    {message: "The IRS claims you haven't filed taxes for your side hustle as a dog massuer. You haven't but they can't know that. What do you do?",
+     a: {
+       display:"Falsify Documents",
+       GPT: "filed fake documents with the IRS who tried to get them on tax fraud for not filing taxes for their dog massuer side hustly; the IRS bought it"
+    }, b: {
+        display:"Tell them you don't owe taxes because you are a soverign citizen",
+        GPT: "tried to claim they were a soverign citizen to the IRS to not have to pay taxes for their dog masseur side hustle; the IRS did not buy it and they became a meme because of the resulting YouTube video of them arguing with the police"
+    }},
+    {message: "After lots of saving, you can finally buy a house. Should you?",
+     a: {
+       display:"Yes! It's the American Dream.",
+       GPT: "bought their dream home",
+       action: () => {
+         player.assets.push("a cute mid-century home with a white picket fence")
+       }
+    }, b: {
+        display:"Yes. It'll be a good investment.",
+        GPT: "bought a fixer-upper home as an investment but the poor DIY repairs caused an electrical fire that totaled the house"
+    }},
+    {message: "Your local mayor has the intelligence of a Georgia student and the charisma of a Georgia Tech student. Will you challenge him this election?",
+     a: {
+       display:"Yes, I am the best person for the job.",
+       GPT: "ran for mayor and won by a landslide",
+       action: () => {
+         player.occupation = () => {return "mayor"}
+       }
+    }, b: {
+        display:"No, I have better things to do that try to please the idiots who thought he was a good choice.",
+        GPT: "decided not to run for mayor and remained bitter about the current mayor"
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }}
+  ],
+  elderly:[
+    {message: "Microsoft called you and said your bank was hacked and they can help you. Do you want their help?",
+     a: {
+       display:"Of course. The man on the phone said he was Bill Gates. He's a smart man, so he'll definitely know what to do.",
+       GPT: "accepted help from scammers claiming to be Bill Gates from Microsoft trying to help them recover their hacked bank account; their identity was stolen"
+    }, b: {
+        display:"No way! Why would I trust them? Bill Gates made the pandemic to mind control us!",
+        GPT: "got suspicious of the people from 'microsoft' calling them to help because their bank was hacked; they avoided being scammed because of their skepticism of Bill Gates after he 'made the COVID'"
+    }},
+    {message: "Your friends are going to rob a bank and need a get away driver. Are you in?",
+     a: {
+       display:"Sure. I want to feel young again.",
+       GPT: "was the get away driver for a successful bank robery; they bought a lifetime supply of pudding with their cut",
+       action: () => {
+         player.assets.push("a lifetime supply of pudding")
+       }
+    }, b: {
+        display:"No. I'm too old for jail!",
+        GPT: "declined to rob a bank with their friends and had regret after for letting their friends down and not getting millions of dollars"
+    }},
+    {message: "Your grandson can not read cursive but needs to understand an old lettter for class. Do you help him?",
+     a: {
+       display:"Yes. I like being useful.",
+       GPT: "bonded with their granddson by helping him read cursive for a school assignment"
+    }, b: {
+        display:"No. He is too old to not know how. How does he even write without cursive?",
+        GPT: "was rude and ornery about the 'lazy' younger generation not knowing how to read cursive after their grandson asked them for help reading cursive for a class; this same person cannot even navigate Netflix with a TV remote"
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }}
+  ]

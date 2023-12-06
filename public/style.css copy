@@ -1,0 +1,77 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style for the start menu */
+#menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#menu-box {
+  background-color: white;
+  padding: 20px;
+  border: 2px solid #333;
+  border-radius: 10px;
+}
+
+/* Style for the blue background */
+#game-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 80px; /* Space for input container */
+  max-height: 60%;
+  overflow-y: auto;
+}
+
+/* Style for the player info box */
+#player-info-box {
+  background-color: grey;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 2px solid black;
+}
+
+/* Style for the chat container */
+#chat-container {
+  text-align: left;
+  
+}
+
+/* Style for the age button */
+#ageUp {
+  background-color: #4caf50;
+  color: white;
+  width: 100px; /* Adjust the size as needed */
+  height: 100px; /* Adjust the size as needed */
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover effect for the age button */
+#ageUp:hover {
+  background-color: #45a049;
+}
+
+[disabled] {
+  background: gray;
+}

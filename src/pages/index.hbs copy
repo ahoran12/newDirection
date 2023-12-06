@@ -1,0 +1,675 @@
+var player = {
+  age: 0,
+  name: "",
+  assets: [],
+  yearlyEvents: [],
+  stage: function() {
+    if (this.age < 6) {
+      return "youngChild";
+    } else if (this.age >= 6 && this.age < 13){
+      return "child";
+    } else if (this.age >= 13 && this.age < 18){
+      return "teen";
+    } else if (this.age >= 18 && this.age < 22){
+      return "youngAdult";
+    } else if (this.age >= 22 && this.age < 65){
+      return "adult";
+    } else {
+      return "elderly";
+    }
+  },
+  occupation: function () {
+    if (this.age < 6) {
+      return "Child";
+    } else if (this.age >= 6 && this.age < 18) {
+      return "Student";
+    } else {
+      return "Unemployed";
+    }
+  },
+  toString: function () {
+    let string = this.name + " is a " + this.age +" year old " + this.gender + ". Their job is " + player.occupation() + ". ";
+    let own = "nothing";
+    if (this.assets.length > 0) {
+      own = "";
+      this.assets.forEach((asset) => (own = own + "a " + asset + ", "));
+    }
+    let events = "";
+    if (player.yearlyEvents.length > 0) {
+      player.yearlyEvents.forEach((event) => (events = events + event + ", "));
+      player.yearlyEvents = [];
+    } else {
+      events = "did nothing";
+    }
+    string =
+      string + this.name + " owns " + own + ". This year, " + this.name + " " +
+      events +
+      ".";
+    console.log(string);
+    return string;
+  },
+};
+
+const OCCUPATIONS = { college:["Teacher", "Doctor", "Lawyer", "CEO", "Professor", "unemployed"],
+                    noCollege:["CEO", "unemployed", "Truck Driver", "Farmer", "Soldier", "Electrician"]}
+
+const randEvents = {
+  youngChild:[
+    {message: "A stranger offers you candy. Do you take it?",
+     a: {
+       display:"Yes",
+       GPT: "ate candy from a stranger that was poisoned and made them very ill"
+    }, b: {
+        display:"No",
+        GPT: "refused candy from a stranger who was later seen on the news as a wanted serial killer"
+    }},
+    {message: "Your nanny Kayleigh left the front door open. Do you go outside?",
+     a: {
+       display:"Yes! I love adventures.",
+       GPT: "wandered outside unsuupervised because their babysitter left the door open and tried to build a sand castle out of an ant hill (it was very painful)"
+    }, b: {
+        display:"No! Mommy says that is dangerous.",
+        GPT: "stayed inside when the door was left open and avoided harm"
+    }},
+    {message: "A girl comes up to you at the playground and asks to play a game. Do you want to play?",
+     a: {
+       display:"Yes",
+       GPT: "played a riveting game of jacks at the playground with a random girl and made a new best friend (for the day); you got to keep the marble"
+    }, b: {
+        display:"No",
+        GPT: "refused to play jacks with an unknown girl at the playground and made her cry by not being her friend"
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }}
+  ],
+  child:[
+    {message: "Your mom says you can have a pet! You go to the pet store and cannot decide between a fluffy puppy or cute cockroach. Which will you choose?",
+     a: {
+       display:"The puppy! It's so soft!",
+       GPT: "adopted a cute puppy that threw up on everything then died"
+    }, b: {
+        display:"The cockroach is too cute to leave behind.",
+        GPT: "adopted a pet cockroach named Percy who is loyal and follows them everywhere",
+        action:()=>{
+          player.assets.push("beloved pet cockroach named Percy")
+        }
+    }},
+    {message: "You feel ill and like you shouldn't go to school. Do you tell your parents?",
+     a: {
+       display:"Yes",
+       GPT: "told their mom they didn't feel well and that they shouldn't go to school but their mom didn't believe them; they embarassed themselves by throwing up on the teacher"
+    }, b: {
+        display:"No",
+        GPT: "declined to tell their mom they were too sich to go to school; they threw up all over the teacher and were very embarassed."
+    }},
+    {message: "Samantha started a rumor that you still shower with your mom. What do you do?",
+     a: {
+       display:"Start a rumor she has a crush on the weird kid",
+       GPT: "successfully started a rumor that Samantha was into the weird kid in the class after Samantha started a rumor that they still shower with their mom."
+    }, b: {
+        display:"Embrace it. Why hide the truth?",
+        GPT: "got mocked mercilously for still showering with their mother after owning up to the rumor Samantha started"
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }}
+  ],
+  teen:[
+    {message: "Your friend offers you a cigarett. Want to try it?",
+     a: {
+       display:"Sure, it smells good.",
+       GPT: "tried a cigarett that resulted in a severe nicotine addction and their mom threatened to send them to rehab"
+    }, b: {
+        display:"No, smoking is nasty.",
+        GPT: "declined the offer to try a cigarett and avoided becoming an addict"
+    }},
+    {message: "A bully challenges you to a fight after school. Do you do it?",
+     a: {
+       display:"Yes! I have the power of God and Anime on my side.",
+       GPT: "got into a fight with a bully at school and ended up dangling from the flag pole by their underwear after trying to embarassingly fight like an anime character; Their nickname the rest of the year was capitan underpants"
+    }, b: {
+        display:"No, only someone as stupid as him would think that's a good idea.",
+        GPT: "declined to fight a bully at school and was mocked for being weak"
+    }},
+    {message: "Your mom thinks you're just going through a phase and will not let you get a face tattoo. What do you do?",
+     a: {
+       display:"This is the real me! I am running away to be who I really am.",
+       GPT: "ran away from home because their mom wouldn't let them get a face tattoo claiming it is 'just a phase' and they feel like this is the real them; they came back home an hour later because they wanted the dinosaur nuggets their mom was making for dinner"
+    }, b: {
+        display:"Too bad. My buddy can do it in his basement without her signing off.",
+        GPT: "tried to get a stick-and-poke tattoo on their friend's basement because their mom wouldn't let them get a one claiming it is 'just a phase' and they feel like this is the real them; the needle barely grazed their face and they passed out from fear then went home without a tattoo"
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }}
+  ],
+  youngAdult:[
+    {message: "You feel like all of your friends are getting married and having babies. How do you cope?",
+     a: {
+       display:"Obsess over all their Facebook posts about it",
+       GPT: "fell into a deep depression about not being married and having kids like all of their friends; it is really messing with their wellbeing"
+    }, b: {
+        display:"Ignore it. Who cares?",
+        GPT: "chose to not obsess over other people's lives and focus on improving themself"
+    }},
+    {message: "Someone offered you $50 for feet pics. Will you do it?",
+     a: {
+       display:"Yes. Easiest $50 of my life.",
+       GPT: "sold feet pics to a stranger for $50 and was told they had 'really nice feet'",
+       action: () =>{ 
+         player.assets.push("$50")
+         player.assets.push("some 'really nice feet'")
+       }
+    }, b: {
+        display:"No. That's weird.",
+        GPT: "missed out on an easy $50 by not selling their feet pics"
+    }},
+    {message: "You start feeling like calling yourself a " + player.gender +" doesn't describe you. Want to transition?",
+     a: {
+       display:"Yes. I have never felt right in this body.",
+       GPT: "transitioned from being a " + player.gender + " and feels like they are living their authentic life",
+       action: () => {
+         if (player.gender == "male") {
+           player.gender = "female";
+         } else {
+           player.gender = "male";
+         }
+       } 
+    }, b: {
+        display:"No. This is just a passing thought",
+        GPT: "briefly thought about transitioning but decided against it"
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }}
+  ],
+  adult:[
+    {message: "The IRS claims you haven't filed taxes for your side hustle as a dog massuer. You haven't but they can't know that. What do you do?",
+     a: {
+       display:"Falsify Documents",
+       GPT: "filed fake documents with the IRS who tried to get them on tax fraud for not filing taxes for their dog massuer side hustly; the IRS bought it"
+    }, b: {
+        display:"Tell them you don't owe taxes because you are a soverign citizen",
+        GPT: "tried to claim they were a soverign citizen to the IRS to not have to pay taxes for their dog masseur side hustle; the IRS did not buy it and they became a meme because of the resulting YouTube video of them arguing with the police"
+    }},
+    {message: "After lots of saving, you can finally buy a house. Should you?",
+     a: {
+       display:"Yes! It's the American Dream.",
+       GPT: "bought their dream home",
+       action: () => {
+         player.assets.push("a cute mid-century home with a white picket fence")
+       }
+    }, b: {
+        display:"Yes. It'll be a good investment.",
+        GPT: "bought a fixer-upper home as an investment but the poor DIY repairs caused an electrical fire that totaled the house"
+    }},
+    {message: "Your local mayor has the intelligence of a Georgia student and the charisma of a Georgia Tech student. Will you challenge him this election?",
+     a: {
+       display:"Yes, I am the best person for the job.",
+       GPT: "ran for mayor and won by a landslide",
+       action: () => {
+         player.occupation = () => {return "mayor"}
+       }
+    }, b: {
+        display:"No, I have better things to do that try to please the idiots who thought he was a good choice.",
+        GPT: "decided not to run for mayor and remained bitter about the current mayor"
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }}
+  ],
+  elderly:[
+    {message: "Microsoft called you and said your bank was hacked and they can help you. Do you want their help?",
+     a: {
+       display:"Of course. The man on the phone said he was Bill Gates. He's a smart man, so he'll definitely know what to do.",
+       GPT: "accepted help from scammers claiming to be Bill Gates from Microsoft trying to help them recover their hacked bank account; their identity was stolen"
+    }, b: {
+        display:"No way! Why would I trust them? Bill Gates made the pandemic to mind control us!",
+        GPT: "got suspicious of the people from 'microsoft' calling them to help because their bank was hacked; they avoided being scammed because of their skepticism of Bill Gates after he 'made the COVID'"
+    }},
+    {message: "Your friends are going to rob a bank and need a get away driver. Are you in?",
+     a: {
+       display:"Sure. I want to feel young again.",
+       GPT: "was the get away driver for a successful bank robery; they bought a lifetime supply of pudding with their cut",
+       action: () => {
+         player.assets.push("a lifetime supply of pudding")
+       }
+    }, b: {
+        display:"No. I'm too old for jail!",
+        GPT: "declined to rob a bank with their friends and had regret after for letting their friends down and not getting millions of dollars"
+    }},
+    {message: "Your grandson can not read cursive but needs to understand an old lettter for class. Do you help him?",
+     a: {
+       display:"Yes. I like being useful.",
+       GPT: "bonded with their granddson by helping him read cursive for a school assignment"
+    }, b: {
+        display:"No. He is too old to not know how. How does he even write without cursive?",
+        GPT: "was rude and ornery about the 'lazy' younger generation not knowing how to read cursive after their grandson asked them for help reading cursive for a class; this same person cannot even navigate Netflix with a TV remote"
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }},
+    {message: "",
+     a: {
+       display:"",
+       GPT: ""
+    }, b: {
+        display:"",
+        GPT: ""
+    }}
+  ]
+}
+
+document.getElementById("startGame").addEventListener("click", () => {
+  startGame();
+});
+
+document.getElementById("ageUp").addEventListener("click", () => {
+  ageOneYear();
+});
+
+// Function to start the game
+function startGame() {
+  player.name = document.getElementById("playerName").value.trim();
+  if (player.name === "") {
+    alert("Please enter a name to start the game.");
+    return;
+  }
+  //generates random birth time
+  player.birthTime = getRandomTime();
+  player.gender = document.querySelector('input[name="gender"]:checked').value;
+  player.birthday = getRandomBirthday(2000, 2010); // Adjust years as needed
+
+  // Update the welcome message
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("game-container").style.display = "block";
+  document.getElementById(
+    "output-container"
+  ).innerText = `Welcome, ${player.name}! You were born at ${player.birthTime}, on ${player.birthday}. Your life begins...`;
+ 
+  // Update the player info box
+  document.getElementById("playerNameDisplay").textContent = player.name;
+  document.getElementById("playerAgeDisplay").textContent = player.age;
+  document.getElementById("playerOccupationDisplay").textContent =
+    player.occupation();
+
+  player.yearlyEvents = [
+    "was born at " + player.birthTime + " on " + player.birthday,
+  ];
+  // Fetch and display initial messages
+  fetchAndDisplayMessages();
+}
+
+// Function to generate a random birthday
+function getRandomBirthday(startYear, endYear) {
+  var birthDate = new Date(
+    startYear + Math.random() * (endYear - startYear),
+    Math.floor(Math.random() * 12),
+    Math.floor(Math.random() * 28) + 1
+  );
+  return birthDate.toDateString();
+}
+
+function getRandomTime() {
+  var hours = Math.floor(Math.random() * 24);
+  var minutes = Math.floor(Math.random() * 60);
+  var ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  return hours + ":" + minutes + " " + ampm;
+}
+
+function ageOneYear() {
+  if (player.age >= 70) {
+    // Probability of surviving decreases with age
+    var survivalChance = 1 - (player.age - 70) * 0.03; // Adjust the 0.03 factor as needed
+
+    // Check if the player survives this year
+    if (Math.random() > survivalChance || player.age >= 101) {
+      player.yearlyEvents.push("the grim reaper came knocking at their door [give them a comedic and absurd death]")
+    }
+  }
+
+  player.age++;
+  // Update the player's occupation
+  var newOccupation = player.occupation();
+
+  // Update the player info box
+  document.getElementById("playerAgeDisplay").textContent = player.age;
+  document.getElementById("playerOccupationDisplay").textContent =
+    newOccupation;
+
+ //document.getElementById("output-container").innerHTML += `<strong>Age: ${player.age}</strong><br>`;
+  //const message = `<p><b>Age: ${player.age}</b></p>`;
+  
+  //const outputContainer = document.getElementById("output-container");
+  //const messageElement = document.createElement("div");
+  //messageElement.innerHTML = message;
+  //outputContainer.appendChild(messageElement);
+  // Create a new paragraph element for the age and format it as bold
+  const ageParagraph = document.createElement("p");
+  const boldAge = document.createElement("b");
+  boldAge.textContent = `Age: ${player.age}`;
+  ageParagraph.appendChild(boldAge);
+
+  // Append the age paragraph to the output container
+  const outputContainer = document.getElementById("output-container");
+  outputContainer.appendChild(ageParagraph);
+  // Scroll to the bottom of the output container
+  outputContainer.scrollTop = outputContainer.scrollHeight;
+
+  // Trigger events at specific ages
+  if (player.age === 6) {
+    document.getElementById("output-container").innerText +=
+      "\nYou start elementary school!";
+    player.yearlyEvents.push("started elementary school");
+  } else if (player.age === 11) {
+    document.getElementById("output-container").innerText +=
+      "\nYou graduate elementary school and start middle school!";
+    player.yearlyEvents.push(
+      "graduated elementary school and started middle school"
+    );
+  } else if (player.age === 14) {
+    document.getElementById("output-container").innerText +=
+      "\nYou graduate Middle School and started High School!";
+    player.yearlyEvents.push(
+      "You graduated middle school and started High School"
+    );
+  } else if (player.age === 18) {
+    document.getElementById("output-container").innerText +=
+      "\nYou graduate High School!";
+    // Show a popup for college decision
+    var decision = confirm("Do you want to go to college?");
+    if (decision) {
+      document.getElementById("output-container").innerText +=
+        "\nYou go to college!";
+      player.yearlyEvents.push(
+        "graduated high school and started college at university/college/trade school name"
+      );
+      player.education = "some college"
+      player.occupation = () => {return "college student"}
+    } else {
+      document.getElementById("output-container").innerText +=
+        "\nYou choose not to go to college.";
+      player.yearlyEvents.push(
+        "graduated high school and decided not to go to college"
+      );
+      player.education = "high school";
+      player.occupation = ()=>{return OCCUPATIONS.noCollege[Math.floor(Math.random() * 6)]};
+    }
+  } else if (player.education == "some college" && player.age == 22) {
+        let randJob = OCCUPATIONS.college[Math.floor(Math.random() * 6)];
+          document.getElementById("output-container").innerText +=
+        "\nYou graduated college!";
+          player.yearlyEvents.push(
+        "graduated college and got a job as a " + randJob + " (unless occupation is unemployed)!"
+      );
+      player.education = "college";
+    player.occupation = ()=>{return randJob};
+    
+  } else if (player.age == 65){
+      document.getElementById("output-container").innerText +=
+        "\nYou retired from being a " + player.occupation() +"!";
+          player.yearlyEvents.push(
+        "retired from being a " + player.occupation()
+      );
+
+    player.occupation = ()=>{return "retired"};
+  }
+
+  // Add random events at random ages
+  if (Math.random() < 0.73) {
+    // 73% chance of a random event
+    // submits age to gpt, responds with what is age appropriate
+    randEvent()
+  }
+
+  document.getElementById("output-container").scrollTop =
+    document.getElementById("output-container").scrollHeight;
+
+  // Fetch and display messages after aging
+  document.getElementById("ageUp").setAttribute("disabled", "");
+  fetchAndDisplayMessages();
+}
+
+// Function to fetch and display messages
+async function fetchAndDisplayMessages() {
+  let msg = player.toString();
+  console.log("Message to GPT: " + msg);
+  try {
+    const response = await fetch("/api", {
+      method: "POST",
+      body: JSON.stringify({
+        message: msg,
+      }),
+    });
+    // Make the GET request to your API endpoint
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json(); // Parse the JSON response
+    console.log(data);
+
+    // Loop through the messages and display them
+    const messagesContainer = document.getElementById("output-container");
+    // messagesContainer.innerHTML = ""; // Clear existing messages
+
+    data.response.forEach((message) => {  
+      let output = message.content;
+      output = GPTProcessor(output);
+      
+      const messageElement = document.createElement("div");
+      messageElement.textContent = output;
+      messagesContainer.appendChild(messageElement);
+    });
+  
+    
+    document.getElementById("ageUp").removeAttribute("disabled");
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+  }
+}
+
+//processes responses from GPT
+function GPTProcessor(input){
+  let output = input;
+  if (input.includes("☠")) {
+      output = output.replace("☠", "");
+      death()
+  }
+  
+  let listStart = input.indexOf("📋");
+  if (listStart > -1) {
+    let listEnd = input.indexOf("]", listStart);
+    let listJson = input.slice(listStart + 2, listEnd+1); // Extract only the list part
+    player.assets = JSON.parse(listJson); // Parse the list as JSON
+
+    output = input.slice(0, listStart) + input.slice(listEnd + 1); // Compose output string
+    console.log(player.assets);
+
+  }
+  
+  return output;
+}
+
+//random event. Comes up with random event based on life stage and adds it to yearly events
+function randEvent() {
+      document.getElementById("output-container").innerText +=
+      "\nA random event occurs!";
+   let randNum = Math.floor(Math.random() * 6);
+    let event = randEvents[player.stage()][randNum]
+    console.log(event)
+  /* Random Events Explained: 
+      The event variable randomly selects an event from a list of age appropriate events
+      based on the player's stage of life.
+      An event has three attributes: message, a, and b.
+      Message is the message shown to the user.
+      A and B are choices the user can make.
+      A and B have their own attributes: display and GPT.
+      Display is what is shown to the user.
+      GPT is how the event is explained to the API. The GPT attribute of the selected option is
+      pushed to the player.yearlyEvents array to let the system know what choices they've made.
+      
+      Example:
+      Bobby is a 2 year old who has a random event.
+      The random number for the event is 1, so the associated event is randEvents[youngChild][1].
+      The event message is "Cindy at daycare took your cookie. What do you do?"
+      a:[display: "Bite Her", GPT:"bit Cindy for stealing his cookie at daycare"]
+      b:[display: "Cry Loudly", GPT:"cried because Cindy stole his cookie at daycare causing 
+      his teacher to give him two and put Cindy in time out "]
+      
+      The user sees "Cindy at daycare took your cookie. What do you do?" 
+      with the buttons "Bite Her" and "Cry Loudly." The GPT API only gets the value from the GPT 
+      attribute of the chosen option.*/
+  
+    //display event 
+    // show modal with text = event.message and buttons for event.a.display and event.b.display with values equal 
+    //to event.a.GPT and event.b.GPT 
+    
+    //once option is chosen
+    //let choice = option.value
+    //player.yearlyEvents.push(choice)
+    
+    /*optionally, some events have associated actions. Note: "choice" is not yet defined and should be bassed
+    on the user's choice.
+      To call the action, call
+      if (event.choice.action) {
+        event.choice.action();
+      }
+      }
+    */
+  return event;
+}
+
+//death
+function death(){
+  document.getElementById(
+        "output-container"
+      ).innerText += `\nYou passed away at the age of ${player.age}. Game over.`;
+      // ... rest of your code for game over
+  document.getElementById("ageUp").setAttribute("hidden","");
+      return;
+  
+}
+
