@@ -1,6 +1,6 @@
 A new Direction
-
-
+A game about choices Design
+Designed by Amore Horan and Gaberiel McGuire
 Getting Started
 To start playing the Life Simulator Game, simply follow these steps:
 
