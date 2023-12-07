@@ -3,7 +3,7 @@ var player = {
   name: "",
   assets: [],
   yearlyEvents: [],
-  gender: "", 
+  gender: "",
   stage: function () {
     if (this.age < 6) {
       return "youngChild";
@@ -31,15 +31,9 @@ var player = {
   },
   toString: function () {
     let string =
-      this.name +
-      " is a " +
-      this.age +
-      " year old " +
-      this.gender +
-      ". ";
-    if (this.age>= 18) {
-      string += "Their job is " +
-      this.occupation() + ". "
+      this.name + " is a " + this.age + " year old " + this.gender + ". ";
+    if (this.age >= 18) {
+      string += "Their job is " + this.occupation() + ". ";
     }
     let owns = "nothing";
     if (this.assets.length > 0) {
@@ -409,6 +403,19 @@ const randEvents = {
       },
     },
     {
+      message:
+        "Would you like to start a career?",
+      a: {
+        display: "Yes!",
+        GPT: "Started a new career!",
+      },
+      b: {
+        display:
+          "no.",
+        GPT: "Recjected to start their ",
+      },
+    },
+    {
       message: "After lots of saving, you can finally buy a house. Should you?",
       a: {
         display: "Yes! It's the American Dream.",
@@ -548,14 +555,16 @@ const randEvents = {
     },
   ],
 };
-document.getElementById("playerName").addEventListener("input", function() {
-    var inputElement = this;
-    var inputValue = inputElement.value;
-    
-    if (inputValue.length > 0) {
-        var capitalizedValue = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
-        inputElement.value = capitalizedValue;
-    }
+//autocaps name
+document.getElementById("playerName").addEventListener("input", function () {
+  var inputElement = this;
+  var inputValue = inputElement.value;
+
+  if (inputValue.length > 0) {
+    var capitalizedValue =
+      inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
+    inputElement.value = capitalizedValue;
+  }
 });
 //EVENT LISTENER FOR START GAME
 document.getElementById("startGame").addEventListener("click", () => {
@@ -573,31 +582,33 @@ function startGame() {
     alert("Please enter a name to start the game.");
     return;
   }
-    // Get the selected gender value from the radio buttons
-    player.gender = document.querySelector('input[name="gender"]:checked').value;
-  //arrays of avatars  
+  // Get the selected gender value from the radio buttons
+  player.gender = document.querySelector('input[name="gender"]:checked').value;
+  //arrays of avatars
   const maleAvatars = [
-        "https://cdn.glitch.global/12634f73-487e-48d6-84dc-63b6721aef3d/male1.png?v=1701799965026",
-        "https://cdn.glitch.global/12634f73-487e-48d6-84dc-63b6721aef3d/male2.png?v=1701801343781",
-        "https://cdn.glitch.global/12634f73-487e-48d6-84dc-63b6721aef3d/male3.png?v=1701801348857"
-    ];
-    const femaleAvatars = [
-        "https://cdn.glitch.global/12634f73-487e-48d6-84dc-63b6721aef3d/female3.png?v=1701801237586",
-        "https://cdn.glitch.global/12634f73-487e-48d6-84dc-63b6721aef3d/female2.png?v=1701801337377",
-        "https://cdn.glitch.global/12634f73-487e-48d6-84dc-63b6721aef3d/female1.png?v=1701801287808"
-    ];
-    // Set avatar based on gender
-   var avatarImg = document.getElementById("profileAvatar");
-    if (player.gender === "male") {
-        // Select a random male avatar
-        var randomMaleAvatar = maleAvatars[Math.floor(Math.random() * maleAvatars.length)];
-        avatarImg.src = randomMaleAvatar;
-    } else if (player.gender === "female") {
-        // Select a random female avatar
-        var randomFemaleAvatar = femaleAvatars[Math.floor(Math.random() * femaleAvatars.length)];
-        avatarImg.src = randomFemaleAvatar;
-    }
- 
+    "https://cdn.glitch.global/12634f73-487e-48d6-84dc-63b6721aef3d/male1.png?v=1701799965026",
+    "https://cdn.glitch.global/12634f73-487e-48d6-84dc-63b6721aef3d/male2.png?v=1701801343781",
+    "https://cdn.glitch.global/12634f73-487e-48d6-84dc-63b6721aef3d/male3.png?v=1701801348857",
+  ];
+  const femaleAvatars = [
+    "https://cdn.glitch.global/12634f73-487e-48d6-84dc-63b6721aef3d/female3.png?v=1701801237586",
+    "https://cdn.glitch.global/12634f73-487e-48d6-84dc-63b6721aef3d/female2.png?v=1701801337377",
+    "https://cdn.glitch.global/12634f73-487e-48d6-84dc-63b6721aef3d/female1.png?v=1701801287808",
+  ];
+  // Set avatar based on gender
+  var avatarImg = document.getElementById("profileAvatar");
+  if (player.gender === "male") {
+    // Select a random male avatar
+    var randomMaleAvatar =
+      maleAvatars[Math.floor(Math.random() * maleAvatars.length)];
+    avatarImg.src = randomMaleAvatar;
+  } else if (player.gender === "female") {
+    // Select a random female avatar
+    var randomFemaleAvatar =
+      femaleAvatars[Math.floor(Math.random() * femaleAvatars.length)];
+    avatarImg.src = randomFemaleAvatar;
+  }
+
   //generates random birth time
   player.birthTime = getRandomTime();
   player.gender = document.querySelector('input[name="gender"]:checked').value;
@@ -613,8 +624,7 @@ function startGame() {
   // Update the player info box
   document.getElementById("playerNameDisplay").textContent = player.name;
   document.getElementById("playerAgeDisplay").textContent = player.age;
-  document.getElementById("playerOccupationDisplay").textContent =
-    player.occupation();
+  document.getElementById("playerOccupationDisplay").textContent = player.occupation();
 
   player.yearlyEvents = [
     "was born at " + player.birthTime + " on " + player.birthday,
@@ -623,6 +633,11 @@ function startGame() {
   // fetchAndDisplayMessages();
 }
 
+//scroll to bottom
+function scrollToBottom() {
+  var gameContainer = document.getElementById("game-container");
+  gameContainer.scrollTop = gameContainer.scrollHeight;
+}
 // Function to generate a random birthday
 function getRandomBirthday(startYear, endYear) {
   var birthDate = new Date(
@@ -675,8 +690,8 @@ function ageOneYear() {
   outputContainer.appendChild(ageParagraph);
 
   // Scroll to the bottom of the output container
-  outputContainer.scrollTop = outputContainer.scrollHeight;
-
+ // outputContainer.scrollTop = outputContainer.scrollHeight;
+   scrollToBottom();
   // Trigger events at specific ages
   if (player.age === 6) {
     document.getElementById("output-container").innerText +=
@@ -743,55 +758,25 @@ function ageOneYear() {
     };
   }
 
-
   document.getElementById("output-container").scrollTop =
     document.getElementById("output-container").scrollHeight;
 
   // Fetch and display messages after aging
   document.getElementById("ageUp").setAttribute("disabled", "");
-  if (Math.random() < 0.50) {
+  if (Math.random() < 0.5) {
     // 50% chance of a random event
     randEventPopup();
   } else {
-      // fetchAndDisplayMessages();
-    fetchAndDisplayGPTResponse(player.toString())
+    // fetchAndDisplayMessages();
+    fetchAndDisplayGPTResponse(player.toString());
   }
 }
 
-async function fetchAndDisplayGPTResponse(gptRequest) {
-  // Display the loader
-  document.getElementById("loader-spinner").style.display = "block";
-
-  try {
-    console.log(gptRequest);
-    const response = await fetch("/api", {
-      method: "POST",
-      body: JSON.stringify({ message: gptRequest })
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    data.response.forEach((message) => {
-      displayGPTResponse(GPTProcessor(message.content));
-    });
-    console.log(data);
-
-  } catch (error) {
-    console.error("Error fetching GPT response:", error);
-  } finally {
-    // Hide the loader regardless of the result
-    document.getElementById("loader-spinner").style.display = "none";
-    document.getElementById("ageUp").removeAttribute("disabled");
-  }
-}
 
 //processes responses from GPT
 function GPTProcessor(input) {
   let output = input;
-  
+
   let listStart = input.indexOf("📋");
   if (listStart > -1) {
     let listEnd = input.indexOf("]", listStart);
@@ -801,7 +786,7 @@ function GPTProcessor(input) {
     output = input.slice(0, listStart) + input.slice(listEnd + 1); // Compose output string
     console.log(player.assets);
   }
-  
+
   if (input.includes("☠")) {
     output = output.replace("☠", "");
     death(output);
@@ -895,14 +880,13 @@ function randEventPopup() {
   };
 }
 
-
 // Function to send GPT request and display response
 async function fetchAndDisplayGPTResponse(gptRequest) {
   try {
     console.log(gptRequest);
     const response = await fetch("/api", {
       method: "POST",
-      body: JSON.stringify({ message: gptRequest })
+      body: JSON.stringify({ message: gptRequest }),
     });
 
     if (!response.ok) {
@@ -911,7 +895,7 @@ async function fetchAndDisplayGPTResponse(gptRequest) {
 
     const data = await response.json();
     data.response.forEach((message) => {
-         displayGPTResponse(GPTProcessor(message.content));
+      displayGPTResponse(GPTProcessor(message.content));
     });
     console.log(data);
     document.getElementById("ageUp").removeAttribute("disabled");
@@ -936,7 +920,6 @@ function showDeathPopup(age, message) {
   document.getElementById("gpt-death-message").textContent = message;
 }
 
-
 // Call the showDeathPopup function in your death() function
 function death(message) {
   document.getElementById(
@@ -949,6 +932,4 @@ function death(message) {
 
 document.getElementById("restart").addEventListener("click", (e) => {
   location.reload();
-})
-
-
+});

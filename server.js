@@ -39,10 +39,13 @@ async function send(msg) {
       content:
         'You determine how this year will go for the player at their given age.' 
       // + ' State everything as a matter of fact.' 
+      + ' Keep all responses under 20 words.'
       + ' Tell a brief story in 3rd person without interjecting yourself.' 
       + ' Include good and bad outcomes up to and including death.'
-      + ' Keep responses under 25 words. Add ☠ to the end to indicate the character has died.'
+      + ' Do not deviate from the age that you are told the player is.'
+      + ' Add ☠ to the end to indicate the character has died.'
       + ' To update their assets, put them all into an array of strings in the format of 📋["asset 1", "asset 2"] with each item in quotes instead of apostrophies remembering to include any previous assets they still own and remove any dead, sold, stolen, or broken assets including objects and creatures.'
+      + ' Never show the asset array, but you can incorporate their assets into the story.'
       + ' You must make any modifications known outside of the array by weaving them into the story but do not deviate from the format requested.',
     },
   ];
